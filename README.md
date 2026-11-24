@@ -2,10 +2,13 @@
 
 재난 사진의 피해 등급이 같은 최대 변화량에서 얼마나 낮아지는지, FGSM 적대적 학습으로 심각한 피해를 더 찾으면 담당자가 확인할 오경보도 얼마나 늘어나는지 조사했다. CrisisMMD의 피해 등급이 있는 사진 3,526장에서 출발했고, 시험 사진 529장은 끝까지 고정했다.
 
-**[최종 보고서 미리보기 (PDF)](docs/final-report.pdf) · [편집용 Word 보고서](docs/final-report.docx) · [전체 제출 ZIP 다운로드](https://github.com/rhcp030418/CrisisMMD_FGSM_BIM/releases/download/v1.0.1/CrisisMMD-full-submission.zip) · [릴리스와 파일 목록](https://github.com/rhcp030418/CrisisMMD_FGSM_BIM/releases/tag/v1.0.1)**
+**[최종 보고서 PDF (11쪽)](docs/final-report.pdf) · [편집용 Word](docs/final-report.docx) · [실행 결과가 담긴 노트북 (.ipynb)](notebooks/colab-validation.ipynb) · [Google Colab에서 열기](https://colab.research.google.com/github/rhcp030418/CrisisMMD_FGSM_BIM/blob/main/notebooks/colab-validation.ipynb)**
+
+보고서 11쪽은 Colab에서 다시 확인한 결과다. 세 모델이 원본 사진 529장에 내린 판정 1,587건이 기존 기록과 일치했다. 노트북에는 침수 박물관 사진의 원본·FGSM·BIM 입력별 ‘심각’ 점수(91.6%·43.2%·0.4%)도 저장되어 있다. 259장 전체의 등급 변화는 기존 예측을 재집계했다. [세 모델의 실행 화면](figures/colab-models.jpg) · [박물관 사진의 실행 화면](figures/colab-museum.jpg)
 
 | 찾는 자료 | 바로가기 |
 |---|---|
+| 가중치와 원 실험 자료 | [v1.0.1 실험 ZIP](https://github.com/rhcp030418/CrisisMMD_FGSM_BIM/releases/download/v1.0.1/CrisisMMD-full-submission.zip)에는 모델 가중치와 당시의 10쪽 보고서가 들어 있다. Colab 부록을 포함한 최종본과 노트북은 위 링크에서 열 수 있다. |
 | 제안서와 보고서의 발전 과정 | [최초 제안서](docs/archive/01-proposal.docx) · [공격 비교](docs/archive/02-attack-comparison.docx) · [방어 학습 추가](docs/archive/03-defense-training.docx) · [사진·그래프 추가](docs/archive/04-visual-analysis.docx) · [오경보 분석](docs/archive/05-review-workload.docx) · [침수 사례 반영](docs/archive/06-flood-case.docx) |
 | 코드와 재현 절차 | [데이터 준비](prepare.py) · [일반 모델 학습 및 평가](experiment.py) · [두 방어 모델 학습](train_defense.py) · [원 실험 안내](실행안내.md) · [방어 학습 안내](방어학습_실행안내.md) |
 | 사진별 정답과 예측 | [일반 학습](results/predictions.csv) · [노이즈 학습](defense/noise/predictions.csv) · [FGSM 학습](defense/fgsm/predictions.csv) · [세 모델의 동일 사진 비교](comparison/paired_predictions.csv) |
