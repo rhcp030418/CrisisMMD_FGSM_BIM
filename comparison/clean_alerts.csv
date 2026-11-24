@@ -1,0 +1,4 @@
+﻿model,test_images,actual_severe,flagged_severe,true_severe_in_list,false_alarms,missed_severe,percent_true_severe_in_list
+standard,529,332,338,259,79,73,76.627
+noise,529,332,360,263,97,69,73.056
+fgsm,529,332,518,328,190,4,63.32

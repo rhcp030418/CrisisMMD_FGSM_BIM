@@ -1,0 +1,4 @@
+﻿image_id,method,channel_values,mean_abs_change_0_to_255,max_abs_change_0_to_255,prediction
+905905349437399041_0,sign_noise,76800,4.0,4.0,심각
+905905349437399041_0,fgsm,76800,4.0,4.0,심각
+905905349437399041_0,bim,76800,1.66127,4.0,경미

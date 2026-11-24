@@ -1,0 +1,57 @@
+{
+  "split_original": {
+    "train": [
+      333,
+      587,
+      1548
+    ],
+    "dev": [
+      71,
+      126,
+      332
+    ],
+    "test": [
+      71,
+      126,
+      332
+    ]
+  },
+  "split_used": {
+    "train": [
+      311,
+      529,
+      1421
+    ],
+    "dev": [
+      67,
+      122,
+      319
+    ],
+    "test": [
+      71,
+      126,
+      332
+    ]
+  },
+  "overlap": {
+    "tweet_id": {
+      "original_train_test": 62
+    },
+    "image_id": {
+      "original_train_test": 0
+    },
+    "sha256": {
+      "original_train_test": 10
+    },
+    "pixel_sha256": {
+      "original_train_test": 10
+    }
+  },
+  "both_downgraded": 39,
+  "fgsm_only": 0,
+  "bim_only": 229,
+  "neither": 60,
+  "checkpoint_sha256": "be10ff96b278d2ec1273426aae2dff00ea2a48036c81cff9ddc44b04e0b01049",
+  "verified_test_images": 529,
+  "verified_conditions": 12
+}

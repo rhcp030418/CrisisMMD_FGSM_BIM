@@ -1,0 +1,17 @@
+{
+  "standard": {
+    "epoch": 1,
+    "validation_macro_f1": 0.48818550779472414,
+    "train_seconds": null
+  },
+  "noise": {
+    "epoch": 1,
+    "validation_macro_f1": 0.4900919684268142,
+    "train_seconds": 34.89397219996317
+  },
+  "fgsm": {
+    "epoch": 3,
+    "validation_macro_f1": 0.2820622015743967,
+    "train_seconds": 26.809171800035983
+  }
+}
