@@ -1,14 +1,17 @@
-# CrisisMMD 재난 사진에서 FGSM과 BIM의 비교
+# FGSM 후속 적대적 공격 기법 사례 분석
 
-재난 사진의 피해 등급이 같은 최대 변화량에서 얼마나 낮아지는지, FGSM 적대적 학습으로 심각한 피해를 더 찾으면 담당자가 확인할 오경보도 얼마나 늘어나는지 조사했다. CrisisMMD의 피해 등급이 있는 사진 3,526장에서 출발했고, 시험 사진 529장은 끝까지 고정했다.
+재난 제보 사진을 AI가 먼저 읽을 때, 원래 알아본 심각한 피해를 얼마나 자주 낮게 판정할까? **FGSM**은 원본을 보고 사진을 한 번 바꾼다. 후속 기법인 **BIM**은 조금 바뀐 사진에서 모델의 반응을 다시 확인한다. 이 반복이 만드는 차이를 알아보기 위해 같은 모델과 같은 사진에서 두 기법을 비교했다.
 
-**[팀 검토용 초안 · PDF (8쪽)](docs/final-report.pdf) · [함께 수정할 Word 초안](docs/final-report.docx) · [실행 결과가 담긴 노트북 (.ipynb)](notebooks/colab-validation.ipynb) · [Google Colab에서 열기](https://colab.research.google.com/github/rhcp030418/CrisisMMD_FGSM_BIM/blob/main/notebooks/colab-validation.ipynb)**
+**[팀 검토용 보고서 · PDF (11쪽)](docs/final-report.pdf) · [함께 수정할 Word 파일](docs/final-report.docx) · [실행 결과가 담긴 노트북 (.ipynb)](notebooks/colab-validation.ipynb) · [Google Colab에서 열기](https://colab.research.google.com/github/rhcp030418/CrisisMMD_FGSM_BIM/blob/main/notebooks/colab-validation.ipynb)**
 
-보고서 2쪽은 CrisisMMD의 사진과 피해 등급을 설명한다. 8쪽 부록에는 Colab에서 다시 확인한 결과가 있다. 세 모델이 원본 사진 529장에 내린 판정 1,587건이 기존 기록과 일치했다. 노트북에는 침수 박물관 사진의 원본·FGSM·BIM 입력별 ‘심각’ 점수(91.6%·43.2%·0.4%)도 저장되어 있다. 259장 전체의 등급 변화는 기존 예측을 재집계했다. [세 모델의 실행 화면](figures/colab-models.jpg) · [박물관 사진의 실행 화면](figures/colab-museum.jpg)
+보고서 2쪽은 **CrisisMMD의 세 등급과 사진을 나눈 기준**, 3~4쪽은 **두 기법이 등급을 얼마나 낮췄고 시간이 얼마나 걸렸는지** 설명한다. 5~6쪽에서는 침수된 박물관 사진 한 장으로 결과를 볼 수 있다. 7~10쪽은 강의 실습에서 이어진 방어 학습 분석과 과제 결론이다.
+
+11쪽 부록은 Colab에서 다시 계산한 결과다. 세 모델이 원본 사진 529장에 내린 판정 1,587건이 기존 기록과 일치했다. 박물관 사진의 ‘심각’ 점수는 원본 91.6%, FGSM 43.2%, BIM 0.4%였다. 259장 전체의 등급 변화는 기존 예측을 재집계했다. [세 모델의 실행 화면](figures/colab-models.jpg) · [박물관 사진의 실행 화면](figures/colab-museum.jpg)
 
 | 찾는 자료 | 바로가기 |
 |---|---|
-| 가중치와 원 실험 자료 | [v1.0.1 실험 ZIP](https://github.com/rhcp030418/CrisisMMD_FGSM_BIM/releases/download/v1.0.1/CrisisMMD-full-submission.zip)에는 모델 가중치와 당시의 10쪽 보고서가 들어 있다. 팀 검토용 초안에는 Colab 재검증 결과가 8쪽 부록으로 들어 있다. |
+| 직접 구현한 결과물과 측정값 | 두 기법의 구현 파일은 `experiment.py`다. [기법별 하락 건수](results/conditions.csv) · [같은 사진에서 달라진 판정](comparison/paired_predictions.csv) · [처리 시간 재측정](comparison/timing_comparison.csv) |
+| 가중치와 원 실험 자료 | [v1.0.1 실험 ZIP](https://github.com/rhcp030418/CrisisMMD_FGSM_BIM/releases/download/v1.0.1/CrisisMMD-full-submission.zip)에는 모델 가중치와 당시의 10쪽 보고서가 들어 있다. 위 PDF와 Word가 팀 검토용으로 갱신한 11쪽 문서다. |
 | 제안서와 보고서의 발전 과정 | [최초 제안서](docs/archive/01-proposal.docx) · [공격 비교](docs/archive/02-attack-comparison.docx) · [방어 학습 추가](docs/archive/03-defense-training.docx) · [사진·그래프 추가](docs/archive/04-visual-analysis.docx) · [오경보 분석](docs/archive/05-review-workload.docx) · [침수 사례 반영](docs/archive/06-flood-case.docx) |
 | 코드와 재현 절차 | [데이터 준비](prepare.py) · [일반 모델 학습 및 평가](experiment.py) · [두 방어 모델 학습](train_defense.py) · [원 실험 안내](실행안내.md) · [방어 학습 안내](방어학습_실행안내.md) |
 | 사진별 정답과 예측 | [일반 학습](results/predictions.csv) · [노이즈 학습](defense/noise/predictions.csv) · [FGSM 학습](defense/fgsm/predictions.csv) · [세 모델의 동일 사진 비교](comparison/paired_predictions.csv) |
@@ -83,5 +86,6 @@ CrisisMMD의 이미지 단독 피해 심각도 분류를 사용했다. 등급은
 ## 데이터와 참고문헌
 
 - CrisisMMD 데이터와 예시 사진에는 배포본의 CC BY-NC-SA 4.0 이용 조건이 적용된다. 시험 원본 전체는 지정된 공개 리비전에서 준비한다. [QCRI 데이터](https://huggingface.co/datasets/QCRI/CrisisMMD) · [배포본 이용 조건](CrisisMMD_LICENSE.txt) · [CrisisMMD 원 논문](https://arxiv.org/abs/1805.00713)
+- 같은 자료로 사진만 보고 피해 등급을 분류한 선행연구가 있다. 후속 연구에서는 공식 학습·시험 자료에 같은 게시물 번호가 62개 들어 있었다고 보고했다. [Shetty 외, 사진 단독 분류 결과](https://doi.org/10.1007/s11042-024-19818-0) · [Mohmand 외, 4.6절](https://pmc.ncbi.nlm.nih.gov/articles/PMC13766435/)
 - FGSM의 단일 갱신과 BIM의 반복 갱신에 관한 원 논문. [Goodfellow 외, FGSM](https://arxiv.org/abs/1412.6572) · [Kurakin 외, BIM §2.2](https://arxiv.org/pdf/1607.02533)
 - 단일 단계 방식으로 학습한 모델을 여러 조건에서 평가한 연구. [Kurakin 외, Adversarial Machine Learning at Scale](https://arxiv.org/abs/1611.01236)
